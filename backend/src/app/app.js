@@ -6,9 +6,12 @@ import productRoutes from "../routes/product.routes.js";
 import cors from "cors";
 const app = express();
 
-const allowedOrigins = (process.env.FRONTEND_URL || "http://localhost:5173")
-    .split(",")
-    .map((origin) => origin.trim());
+const allowedOrigins = [
+    "http://localhost:5173",
+    ...(process.env.FRONTEND_URL || "https://morrow-and-made-uenx.onrender.com")
+        .split(",")
+        .map((origin) => origin.trim()),
+];
 
 app.use(cors({
     origin: (origin, callback) => {
